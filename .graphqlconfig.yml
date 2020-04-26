@@ -1,0 +1,15 @@
+projects:
+  recipebook:
+    schemaPath: amplify/backend/api/recipebook/build/schema.graphql
+    includes:
+      - app/src/graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+extensions:
+  amplify:
+    version: 3
