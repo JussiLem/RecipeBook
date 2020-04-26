@@ -2,7 +2,7 @@
 
 React Native school project.
 
-## Features:
+## Techs:
 * GraphQL
 * AWS AppSync
 * AWS Amplify CI/CD
