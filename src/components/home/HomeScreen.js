@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, FlatList, Text, View, TouchableHighlight, Image, TextInput } from 'react-native'
+import { Button, FlatList, Text, View, TouchableHighlight, Image, TextInput, Slider } from 'react-native'
 import styles from './styles'
 import { API, graphqlOperation } from 'aws-amplify'
 import { listRecipes } from '../../graphql/queries'
@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }) => {
   const initialState = {
     title: '',
     description: '',
-    time: '',
+    time: 0,
     photo_url: ''
   }
   const [recipeForm, setRecipeForm] = useState(initialState)
@@ -71,17 +71,25 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Description"
       />
       <TextInput
-        onChangeText={val => setInput('time', val)}
-        style={styles.input}
-        value={recipeForm.time}
-        placeholder="Time"
-      />
-      <TextInput
         onChangeText={val => setInput('photo_url', val)}
         style={styles.input}
         value={recipeForm.photo_url}
         placeholder="Photo Url"
       />
+      <Slider
+        step={1}
+        minimumValue={0}
+        maximumValue={100}
+        style={styles.input}
+        value={recipeForm.time}
+        onValueChange={slideValue => setInput('time', slideValue)}
+        minimumTrackTintColor="#1fb28a"
+        maximumTrackTintColor="#d3d3d3"
+        thumbTintColor="#b9e4c9"
+      />
+      <Text>
+        Time value: {recipeForm.time}
+      </Text>
       <Button title="Create Recipe" onPress={addRecipe}/>
 
       <FlatList
