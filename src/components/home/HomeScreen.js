@@ -1,32 +1,99 @@
-import React from "react";
-import {FlatList, Text, View, TouchableHighlight, Image} from "react-native";
-import {recipes} from '../../../data/mockData';
-import {getCategoryName} from "../../../data/MockDataApi";
-import styles from './styles';
+import React, { useState, useEffect } from 'react'
+import { Button, FlatList, Text, View, TouchableHighlight, Image, TextInput } from 'react-native'
+import styles from './styles'
+import { API, graphqlOperation } from 'aws-amplify'
+import { listRecipes } from '../../graphql/queries'
+import { createRecipe } from '../../graphql/mutations'
 
-const HomeScreen = ({navigation}) => {
-    const renderRecipes = ({item}) => (
-        <TouchableHighlight underlayColor='rgba(73,182,77,0.9)' onPress={() => navigation.navigate('Recipe', {item})}>
-            <View style={styles.container}>
-                <Image style={styles.photo} source={{uri: item.photo_url}}/>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-            </View>
-        </TouchableHighlight>
-    );
+const HomeScreen = ({ navigation }) => {
+  const initialState = {
+    title: '',
+    description: '',
+    time: '',
+    photo_url: ''
+  }
+  const [recipeForm, setRecipeForm] = useState(initialState)
+  const [recipes, setRecipes] = useState([])
+  useEffect(() => {
+    fetchRecipes()
+  }, [])
 
-    return (
-        <View>
-            <FlatList
-                vertical
-                showsVerticalScrollIndicator={false}
-                numColumns={2}
-                data={recipes}
-                renderItem={renderRecipes}
-                keyExtractor={item => `${item.recipeId}`}
-            />
-        </View>
-    )
+  const setInput = (key, value) => {
+    setRecipeForm({
+      ...recipeForm,
+      [key]: value
+    })
+  }
+
+  const addRecipe = async () => {
+    try {
+      const recipe = { ...recipeForm }
+      setRecipes([...recipes, recipe])
+      setRecipeForm(initialState)
+      await API.graphql(graphqlOperation(createRecipe, { input: recipe }))
+    } catch (e) {
+      console.error('Error creating a new recipe: ', e)
+    }
+  }
+  const fetchRecipes = async () => {
+    try {
+      const recipesData = await API.graphql(graphqlOperation(listRecipes))
+      const recipes = recipesData.data.listRecipes.items
+      setRecipes(recipes)
+    } catch (e) {
+      console.error('error fetching recipes', e)
+    }
+  }
+
+  const renderRecipes = ({ item }) => (
+    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)'
+                        onPress={() => navigation.navigate('Recipe', { item })}>
+      <View style={styles.container}>
+        <Image style={styles.photo} source={{ uri: item.photo_url }}/>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.category}>{item.categoryId}</Text>
+      </View>
+    </TouchableHighlight>
+  )
+
+  return (
+    <View>
+      <TextInput
+        onChangeText={val => setInput('title', val)}
+        style={styles.input}
+        value={recipeForm.title}
+        placeholder="Name"
+      />
+      <TextInput
+        onChangeText={val => setInput('description', val)}
+        style={styles.input}
+        value={recipeForm.description}
+        placeholder="Description"
+      />
+      <TextInput
+        onChangeText={val => setInput('time', val)}
+        style={styles.input}
+        value={recipeForm.time}
+        placeholder="Time"
+      />
+      <TextInput
+        onChangeText={val => setInput('photo_url', val)}
+        style={styles.input}
+        value={recipeForm.photo_url}
+        placeholder="Photo Url"
+      />
+      <Button title="Create Recipe" onPress={addRecipe}/>
+
+      <FlatList
+        vertical
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        data={recipes}
+        renderItem={renderRecipes}
+        keyExtractor={item => `${item.id}`}
+      />
+    </View>
+  )
 }
 
 
