@@ -1,9 +1,9 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer'
-import {createStackNavigator} from '@react-navigation/stack'
-import React from "react";
-import HomeScreen from "./home/HomeScreen";
-import {RecipeScreen} from "./recipe/RecipeScreen";
+import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react'
+import HomeScreen from './home/HomeScreen'
+import { RecipeScreen } from './recipe/RecipeScreen'
 
 const Stack = createStackNavigator()
 
@@ -19,12 +19,12 @@ const Stack = createStackNavigator()
 // )
 
 const AppContainer = () => {
-    return <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen}/>
-            <Stack.Screen name="Recipe" component={RecipeScreen}/>
-        </Stack.Navigator>
-    </NavigationContainer>;
+  return <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Recipe" component={RecipeScreen}/>
+    </Stack.Navigator>
+  </NavigationContainer>
 }
 export default AppContainer
 
