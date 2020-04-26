@@ -9,7 +9,7 @@ type Recipe @model  {
   id: ID!
   title: String!
   photo_url: String!
-  time: String!
+  time: Int!
   description: String!
   category: Category @connection(name: "RecipeCategories")
   ingredient: [Ingredient] @connection(name: "RecipeIngredients")
