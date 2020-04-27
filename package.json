@@ -9,6 +9,7 @@
     "lint": "eslint *.js **/*.js"
   },
   "dependencies": {
+    "@expo/match-media": "^0.0.0-alpha.5",
     "@react-native-community/masked-view": "^0.1.9",
     "@react-native-community/netinfo": "5.5.1",
     "@react-navigation/drawer": "^5.5.0",
@@ -29,7 +30,8 @@
     "react-native-searchbar": "^1.16.0",
     "react-native-snap-carousel": "^3.9.0",
     "react-native-vector-icons": "^6.6.0",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "react-responsive": "^8.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
