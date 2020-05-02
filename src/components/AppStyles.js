@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import { Platform } from 'react-native'
 
-
 // screen sizing
 const { width, height } = Dimensions.get('window')
 // orientation must fixed
@@ -28,6 +27,7 @@ export const RecipeCard = StyleSheet.create({
     borderRadius: 15
   },
   photo: {
+    resizeMode: 'contain',
     width: CONTAINER_WIDTH,
     height: RECIPE_ITEM_HEIGHT,
     borderRadius: 15,
@@ -47,5 +47,15 @@ export const RecipeCard = StyleSheet.create({
   category: {
     marginTop: 5,
     marginBottom: 5
-  }
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  icon: {
+    backgroundColor: '#0091EA',
+    position: 'absolute',
+    bottom: 10,
+    right: 10
+  },
 })

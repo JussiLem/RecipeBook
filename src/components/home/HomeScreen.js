@@ -7,13 +7,15 @@ import {
   TouchableHighlight,
   Image,
   TextInput,
-  Slider
+  Slider,
+  SafeAreaView,
+  Modal
 } from 'react-native'
 import styles from './styles'
 import { API, graphqlOperation } from 'aws-amplify'
 import { listCategorys, listRecipes } from '../../graphql/queries'
 import { createCategory, createRecipe } from '../../graphql/mutations'
-import { Dropdown } from 'react-native-material-dropdown'
+import { Icon } from 'react-native-elements'
 
 const HomeScreen = ({ navigation }) => {
   const initialState = {
@@ -30,6 +32,8 @@ const HomeScreen = ({ navigation }) => {
   }
   const [recipeForm, setRecipeForm] = useState(initialState)
   const [recipes, setRecipes] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+
   useEffect(() => {
     fetchRecipes()
   }, [])
@@ -106,59 +110,83 @@ const HomeScreen = ({ navigation }) => {
   )
 
   return (
-    <View>
-      <TextInput
-        onChangeText={val => setInput('title', val)}
-        style={styles.input}
-        value={recipeForm.title}
-        placeholder="Name"
+    <SafeAreaView>
+      <Icon
+        raised
+        icon
+        color='black'
+        onPress={_ => setModalVisible(true)}
+        underlayColor="#0091EA"
+        containerStyle={styles.icon}
+        name='add'
       />
-      <TextInput
-        onChangeText={val => setInput('description', val)}
-        style={styles.input}
-        value={recipeForm.description}
-        placeholder="Description"
-      />
-      <TextInput
-        onChangeText={val => setInput('photo_url', val)}
-        style={styles.input}
-        value={recipeForm.photo_url}
-        placeholder="Photo Url"
-      />
-      <Slider
-        step={1}
-        minimumValue={0}
-        maximumValue={100}
-        style={styles.input}
-        value={recipeForm.time}
-        onValueChange={slideValue => setInput('time', slideValue)}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#d3d3d3"
-        thumbTintColor="#b9e4c9"
-      />
-      <Text>
-        Time value: {recipeForm.time}
-      </Text>
-      <Dropdown
-        label='Categories'
-        data={categories}
-      />
-      <Button title="Create Recipe" onPress={addRecipe}/>
+      <Modal
+        visible={modalVisible}
+        animationType='slide'
+      >
+        <View style={{flex: 1}}>
+          <TextInput
+            onChangeText={val => setInput('title', val)}
+            style={styles.input}
+            value={recipeForm.title}
+            placeholder="Name"
+          />
+          <TextInput
+            onChangeText={val => setInput('description', val)}
+            style={styles.input}
+            value={recipeForm.description}
+            placeholder="Description"
+          />
+          <TextInput
+            onChangeText={val => setInput('photo_url', val)}
+            style={styles.input}
+            value={recipeForm.photo_url}
+            placeholder="Photo Url"
+          />
+          <Slider
+            step={1}
+            minimumValue={0}
+            maximumValue={100}
+            style={styles.input}
+            value={recipeForm.time}
+            onValueChange={slideValue => setInput('time', slideValue)}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#d3d3d3"
+            thumbTintColor="#b9e4c9"
+          />
+          <Text>
+            Time value: {recipeForm.time}
+          </Text>
+          {/*<Dropdown*/}
+          {/*  label='Categories'*/}
+          {/*  data={categories}*/}
+          {/*/>*/}
+          <Button title="Create Recipe" onPress={addRecipe}/>
 
-      <TextInput
-        onChangeText={val => setCategoryInput('name', val)}
-        style={styles.input}
-        value={categoriesForm.name}
-        placeholder="Category"
-      />
-      <TextInput
-        onChangeText={val => setCategoryInput('photo_url', val)}
-        style={styles.input}
-        value={categoriesForm.photo_url}
-        placeholder="Photo url"
-      />
-      <Button title="Create Category" onPress={addCategories}/>
-
+          <TextInput
+            onChangeText={val => setCategoryInput('name', val)}
+            style={styles.input}
+            value={categoriesForm.name}
+            placeholder="Category"
+          />
+          <TextInput
+            onChangeText={val => setCategoryInput('photo_url', val)}
+            style={styles.input}
+            value={categoriesForm.photo_url}
+            placeholder="Photo url"
+          />
+          <Button title="Create Category" onPress={addCategories}/>
+          <Icon
+            raised
+            icon
+            color='black'
+            onPress={_ => setModalVisible(false)}
+            underlayColor="#0091EA"
+            containerStyle={styles.icon}
+            name='close'
+          />
+        </View>
+      </Modal>
       <FlatList
         vertical
         showsVerticalScrollIndicator={false}
@@ -167,9 +195,8 @@ const HomeScreen = ({ navigation }) => {
         renderItem={renderRecipes}
         keyExtractor={item => `${item.id}`}
       />
-    </View>
+    </SafeAreaView>
   )
 }
-
 
 export default HomeScreen
