@@ -6,54 +6,33 @@ import * as React from 'react'
 import HomeScreen from './home/HomeScreen'
 import { RecipeScreen } from './recipe/RecipeScreen'
 import { CategoriesScreen } from './categories/CategoriesScreen'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-const Stack = createStackNavigator()
-const Tab = createBottomTabNavigator()
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
-// const DrawerStack = createDrawerNavigator(
-//     {
-//         Main: Stack
-//     }, {
-//         drawerPosition: 'left',
-//         initialRouteName: 'Main',
-//         drawerWidth: 250,
-//         // contentComponent: DrawerContainer
-//     }
-// )
+export default () => {
 
-export default () =>
-  <NavigationContainer>
-    <Drawer.Navigator
-      initialRouteName="Home"
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Recipe') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}
-    >
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Recipe" component={RecipeScreen} />
-      <Drawer.Screen name="Categories" component={CategoriesScreen} />
-    </Drawer.Navigator>
-  </NavigationContainer>
+  return<SafeAreaProvider>
+    <NavigationContainer>
+      <Drawer.Navigator
+        headerMode="none"
+        initialRouteName="Home"
+        overlayColor="transparent"
+        drawerStyle={{
+          backgroundColor: '#c6cbef',
+          width: 240,
+        }}
+      >
+        <Drawer.Screen options={{ drawerLabel: 'Home' }}
+                       name="Home" component={HomeScreen}/>
+        <Drawer.Screen options={{ drawerLabel: 'Recipes' }}
+                       name="Recipe" component={RecipeScreen}/>
+        <Drawer.Screen name="Categories" component={CategoriesScreen}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
+  </SafeAreaProvider>
+}
 
 // export default AppContainer
 

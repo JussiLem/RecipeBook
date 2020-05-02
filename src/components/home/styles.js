@@ -9,11 +9,25 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     width: '100%',
-    backgroundColor: '#ddd',
-    marginBottom: 10,
-    padding: 8
+    borderTopWidth: 2,
+    borderTopColor: '#42a1f4',
+    backgroundColor: 'white',
+    position: 'relative',
+    marginBottom: 20,
+    padding: 8,
+    paddingHorizontal: 8
   },
-
+  buttonText: {
+    color: 'black',
+    fontSize: 19,
+    marginBottom: 20
+  },
+  buttonContainer: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+  },
 })
 
 export default styles

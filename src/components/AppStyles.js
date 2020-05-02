@@ -58,4 +58,5 @@ export const RecipeCard = StyleSheet.create({
     bottom: 10,
     right: 10
   },
+
 })
