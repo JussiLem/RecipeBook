@@ -17,8 +17,8 @@ import { listCategorys, listRecipes } from '../../graphql/queries'
 import { createCategory, createRecipe } from '../../graphql/mutations'
 import { Icon } from 'react-native-elements'
 
-const HomeScreen = ({ navigation }) => {
-  const initialState = {
+const HomeScreen = ({ route, navigation }) => {
+  const [recipeForm, setRecipeForm] = useState({
     title: '',
     description: '',
     time: 0,
@@ -26,13 +26,7 @@ const HomeScreen = ({ navigation }) => {
     photo_array: [],
     category: '',
     ingredients: []
-  }
-  const initialCategoryState = {
-    name: '',
-    photo_url: '',
-
-  }
-  const [recipeForm, setRecipeForm] = useState(initialState)
+  })
   const [recipes, setRecipes] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
@@ -46,7 +40,10 @@ const HomeScreen = ({ navigation }) => {
     })
   }
 
-  const [categoriesForm, setCategoriesForm] = useState(initialCategoryState)
+  const [categoriesForm, setCategoriesForm] = useState({
+    name: '',
+    photo_url: '',
+  })
   const [categories, setCategories] = useState([])
   useEffect(() => {
     fetchCategories()
@@ -63,28 +60,39 @@ const HomeScreen = ({ navigation }) => {
     try {
       const recipe = { ...recipeForm }
       setRecipes([...recipes, recipe])
-      setRecipeForm(initialState)
+      setRecipeForm({
+        title: '',
+        description: '',
+        time: 0,
+        photo_url: '',
+        photo_array: [],
+        category: '',
+        ingredients: []
+      })
       await API.graphql(graphqlOperation(createRecipe, { input: recipe }))
     } catch (e) {
       console.error('Error creating a new recipe: ', e)
     }
   }
 
-  const addCategories = async () => {
-    try {
-      const categorys = { ...categoriesForm }
-      setCategories([...categories, categorys])
-      setCategoriesForm(initialCategoryState)
-      await API.graphql(graphqlOperation(createCategory, { input: categorys }))
-    } catch (e) {
-      console.error('Error creating a new category: ', e)
-    }
-  }
+  // const addCategories = async () => {
+  //   try {
+  //     const categorys = { ...categoriesForm }
+  //     setCategories([...categories, categorys])
+  //     setCategoriesForm({
+  //       name: '',
+  //       photo_url: '',
+  //     })
+  //     await API.graphql(graphqlOperation(createCategory, { input: categorys }))
+  //   } catch (e) {
+  //     console.error('Error creating a new category: ', e)
+  //   }
+  // }
   const fetchCategories = async () => {
     try {
       const categoriesData = await API.graphql(graphqlOperation(listCategorys))
       const categories = categoriesData.data.listCategorys.items
-      setRecipes(categories)
+      setCategories(categories)
     } catch (e) {
       console.error('error fetching categories', e)
     }
@@ -167,28 +175,6 @@ const HomeScreen = ({ navigation }) => {
           {/*/>*/}
           <Button title="Create Recipe" onPress={addRecipe}/>
 
-          <TextInput
-            onChangeText={val => setCategoryInput('name', val)}
-            style={styles.input}
-            value={categoriesForm.name}
-            placeholder="Category"
-          />
-          <TextInput
-            onChangeText={val => setCategoryInput('photo_url', val)}
-            style={styles.input}
-            value={categoriesForm.photo_url}
-            placeholder="Photo url"
-          />
-          <Button title="Create Category" onPress={addCategories}/>
-          <Icon
-            raised
-            icon
-            color='black'
-            onPress={_ => setModalVisible(false)}
-            underlayColor="#0091EA"
-            containerStyle={styles.icon}
-            name='close'
-          />
         </View>
       </Modal>
       <FlatList

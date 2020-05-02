@@ -2301,6 +2301,13 @@
   dependencies:
     lodash "^4.17.4"
 
+"@expo/vector-icons@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.1.0.tgz#3fb2517924b031c1b98f86fa51a2032a257759b0"
+  integrity sha512-6ikFslHORJgsb8wKeSgXYfZNNXsiTb3yQf5xaNyGUCYg4zqE7VchdhnH9yZKTI3Lu16jna52pHQZl+3jcOSAbQ==
+  dependencies:
+    lodash "^4.17.4"
+
 "@expo/websql@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@expo/websql/-/websql-1.0.1.tgz#fff0cf9c1baa1f70f9e1d658b7c39a420d9b10a9"
