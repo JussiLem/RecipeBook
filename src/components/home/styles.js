@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   category: RecipeCard.category,
   input: {
     height: 50,
+    width: '100%',
     backgroundColor: '#ddd',
     marginBottom: 10,
     padding: 8

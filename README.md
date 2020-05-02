@@ -9,11 +9,11 @@ React Native school project.
 * AWS DynamoDB
 
 ```shell script
-npm i
+yarn install
 ```
 
 ```shell script
-npm start
+yarn start
 ```
 
 The web build can be accessed from [here](https://master.d3ppqs497a73jr.amplifyapp.com/)

@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import { Platform } from 'react-native'
+
 
 // screen sizing
 const { width, height } = Dimensions.get('window')
@@ -9,7 +11,8 @@ const recipeNumColums = 2
 // item size
 const RECIPE_ITEM_HEIGHT = 150
 const RECIPE_ITEM_MARGIN = 20
-
+const RECIPE_ITEM_MOBILE = RECIPE_ITEM_HEIGHT + 75
+const CONTAINER_WIDTH = (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums
 
 export const RecipeCard = StyleSheet.create({
   container: {
@@ -18,14 +21,14 @@ export const RecipeCard = StyleSheet.create({
     alignItems: 'center',
     marginLeft: RECIPE_ITEM_MARGIN,
     marginTop: 20,
-    width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT + 75,
+    width: CONTAINER_WIDTH,
+    height: RECIPE_ITEM_MOBILE,
     borderColor: '#cccccc',
     borderWidth: 0.5,
     borderRadius: 15
   },
   photo: {
-    width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
+    width: CONTAINER_WIDTH,
     height: RECIPE_ITEM_HEIGHT,
     borderRadius: 15,
     borderBottomLeftRadius: 0,
