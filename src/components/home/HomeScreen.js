@@ -23,7 +23,9 @@ const HomeScreen = ({ navigation }) => {
     description: '',
     time: 0,
     photo_url: '',
-    photo_array: []
+    photo_array: [],
+    category: '',
+    ingredients: []
   }
   const initialCategoryState = {
     name: '',
@@ -98,16 +100,18 @@ const HomeScreen = ({ navigation }) => {
     }
   }
 
-  const renderRecipes = ({ item }) => (
-    <TouchableHighlight underlayColor='rgba(73,182,77,0.9)'
-                        onPress={() => navigation.navigate('Recipe', { item })}>
-      <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.photo_url }}/>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{item.category}</Text>
-      </View>
-    </TouchableHighlight>
-  )
+  const renderRecipes = ({ item }) => {
+    return (
+      <TouchableHighlight underlayColor='rgba(73,182,77,0.9)'
+                          onPress={() => navigation.navigate('Recipe', { item })}>
+        <View style={styles.container}>
+          <Image style={styles.photo} source={{ uri: item.photo_url }}/>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.category}>{item.category}</Text>
+        </View>
+      </TouchableHighlight>
+    )
+  }
 
   return (
     <SafeAreaView>
@@ -192,7 +196,7 @@ const HomeScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         numColumns={2}
         data={recipes}
-        renderItem={renderRecipes}
+        renderItem={e => renderRecipes(e)}
         keyExtractor={item => `${item.id}`}
       />
     </SafeAreaView>
