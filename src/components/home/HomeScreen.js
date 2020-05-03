@@ -23,10 +23,7 @@ const HomeScreen = ({ route, navigation }) => {
     fetchRecipes()
   }, [])
 
-  const [categoriesForm, setCategoriesForm] = useState({
-    name: '',
-    photo_url: '',
-  })
+
   const [categories, setCategories] = useState([])
   useEffect(() => {
     fetchCategories()
@@ -84,13 +81,20 @@ const HomeScreen = ({ route, navigation }) => {
           name='add'
         />
       </View>
-
       <Modal
         visible={modalVisible}
         animationType='slide'
       >
       <RecipeForm navigation={navigation}/>
-
+        <Icon
+          raised
+          icon
+          color='black'
+          onPress={_ => setModalVisible(false)}
+          underlayColor="#0091EA"
+          containerStyle={styles.icon}
+          name='close'
+        />
       </Modal>
       <FlatList
         vertical

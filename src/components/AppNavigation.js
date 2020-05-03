@@ -1,19 +1,17 @@
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import HomeScreen from './home/HomeScreen'
 import { RecipeScreen } from './recipe/RecipeScreen'
 import { CategoriesScreen } from './categories/CategoriesScreen'
-import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Drawer = createDrawerNavigator()
 
 export default () => {
 
-  return<SafeAreaProvider>
+  return <SafeAreaProvider>
     <NavigationContainer>
       <Drawer.Navigator
         headerMode="none"
