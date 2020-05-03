@@ -79,19 +79,25 @@ export default ({ route, navigation }) => {
         iconName='md-stopwatch'
         iconColor='#2C384A'
       />
-      <Slider
-        step={1}
-        minimumValue={1}
-        maximumValue={100}
-        value={recipeForm.time}
-        onValueChange={slideValue => setInput('time', slideValue)}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#d3d3d3"
-        thumbTintColor="#b9e4c9"
-      />
-      <Text style={styles.input}>
-        Time value: {recipeForm.time}
-      </Text>
+      <View style={{
+      }}>
+        <Slider
+          step={1}
+          style={{
+            margin: 15
+          }}
+          minimumValue={1}
+          maximumValue={100}
+          value={recipeForm.time}
+          onValueChange={slideValue => setInput('time', slideValue)}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#d3d3d3"
+          thumbTintColor="#b9e4c9"
+        />
+        <Text style={styles.input}>
+          Time value: {recipeForm.time}
+        </Text>
+      </View>
       <View style={styles.buttonContainer}>
         <FormButton
           buttonType='outline'
@@ -115,9 +121,18 @@ export default ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent'
   },
   buttonContainer: {
     margin: 25
+  },
+  input: {
+    height: 50,
+    marginLeft: 15,
+    fontSize: 28,
+    backgroundColor: 'white',
+    position: 'relative',
+    marginBottom: 20,
+    padding: 8,
+    paddingHorizontal: 8
   }
 })
