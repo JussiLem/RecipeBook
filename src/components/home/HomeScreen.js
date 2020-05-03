@@ -40,15 +40,15 @@ const HomeScreen = ({ route, navigation }) => {
     }
   }
 
-    const fetchRecipes = async () => {
-      try {
-        const recipesData = await API.graphql(graphqlOperation(listRecipes))
-        const recipes = recipesData.data.listRecipes.items
-        setRecipes(recipes)
-      } catch (e) {
-        console.error('error fetching recipes', e)
-      }
+  const fetchRecipes = async () => {
+    try {
+      const recipesData = await API.graphql(graphqlOperation(listRecipes))
+      const recipes = recipesData.data.listRecipes.items
+      setRecipes(recipes)
+    } catch (e) {
+      console.error('error fetching recipes', e)
     }
+  }
 
   const renderRecipes = ({ item }) => {
     return (
@@ -85,7 +85,7 @@ const HomeScreen = ({ route, navigation }) => {
         visible={modalVisible}
         animationType='slide'
       >
-      <RecipeForm navigation={navigation}/>
+        <RecipeForm navigation={navigation}/>
         <Icon
           raised
           icon
