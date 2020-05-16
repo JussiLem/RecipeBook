@@ -1,27 +1,33 @@
 {
-    "api": {
-        "recipebook": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "authrecipebook6549b467"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "auth": {
-        "recipebook6549b467": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
-        }
-    }
+	"api": {
+		"recipebook": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authrecipebook6549b467"
+						}
+					}
+				}
+			}
+		}
+	},
+	"auth": {
+		"recipebook6549b467": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
+	"storage": {
+		"recipebookstorage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
 }
