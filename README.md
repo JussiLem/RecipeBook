@@ -24,6 +24,7 @@ authentication, account recovery & other operations. Authentication uses email &
 ### Folder structure
 
 The components and screens are separated so they can be more easily recycled in the application.
+The graphql folder contains auto generated files are created by the appsync.
 
 ````bash
 src/
