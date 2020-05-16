@@ -21,6 +21,11 @@ authentication, account recovery & other operations. Authentication uses email &
 
 ## General info
 
+### Architecture
+
+![Architecture](architecture.png "Architecture of the app")
+
+
 ### Folder structure
 
 The components and screens are separated so they can be more easily recycled in the application.
