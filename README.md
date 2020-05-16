@@ -23,6 +23,9 @@ authentication, account recovery & other operations. Authentication uses email &
 
 ### Architecture
 
+When the user authenticates and retrieves credentials from Cognito.
+Appsync connects to the data source (DynamoDB) with AppSync resolvers.
+
 ![Architecture](architecture.png "Architecture of the app")
 
 
