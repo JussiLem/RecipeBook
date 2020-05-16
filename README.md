@@ -25,6 +25,8 @@ authentication, account recovery & other operations. Authentication uses email &
 
 The components and screens are separated so they can be more easily recycled in the application.
 The graphql folder contains auto generated files are created by the appsync.
+The original schema that can be edited can be found from:
+``/amplify/backend/api/recipebook/schema.graphql``
 
 ````bash
 src/
