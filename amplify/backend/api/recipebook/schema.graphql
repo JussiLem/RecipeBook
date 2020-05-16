@@ -1,11 +1,19 @@
-type Category @model {
+type Category
+  @model
+{
   id: ID!
   name: String!
   photo_url: String!
   recipes: [Recipe] @connection(name: "RecipeCategories")
 }
 
-type Recipe @model  {
+type Recipe
+  @model
+  @auth(
+    rules: [
+      {allow: owner, ownerField: "owner", operations: [create, update, delete]},
+    ])
+{
   id: ID!
   title: String!
   photo_url: String!

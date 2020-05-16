@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
-import { StyleSheet, SafeAreaView, View, Slider, Text } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Slider, Text, Alert } from 'react-native'
 import { Button } from 'react-native-elements'
 import FormInput from '../form/FormInput'
 import FormButton from '../form/FormButton'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createRecipe } from '../../graphql/mutations'
-
 export default ({ route, navigation }) => {
+  const [recipes, setRecipes] = useState([])
   const [recipeForm, setRecipeForm] = useState({
     title: '',
     description: '',
     time: 0,
     photo_url: '',
-    photos: [],
-    category: '',
-    ingredient: []
   })
 
   const addRecipe = async () => {
@@ -26,11 +23,9 @@ export default ({ route, navigation }) => {
         description: '',
         time: 0,
         photo_url: '',
-        photos: [],
-        category: '',
-        ingredients: []
       })
       await API.graphql(graphqlOperation(createRecipe, { input: recipe }))
+      Alert.alert('A new recipe was created')
     } catch (e) {
       console.error('Error creating a new recipe: ', e)
     }
@@ -68,15 +63,6 @@ export default ({ route, navigation }) => {
         placeholder="Enter photo Url"
         name='url'
         iconName='md-thunderstorm'
-        iconColor='#2C384A'
-      />
-
-      <FormInput
-        onChangeText={val => setInput('description', val)}
-        value={recipeForm.description}
-        placeholder="Enter description"
-        name='description'
-        iconName='md-stopwatch'
         iconColor='#2C384A'
       />
       <View style={{

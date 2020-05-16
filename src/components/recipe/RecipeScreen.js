@@ -36,7 +36,7 @@ export const RecipeScreen = ({ route, navigation }) => {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.infoRecipeContainer}>
-          <Text style={styles.infoRecipeName}>{item.title}</Text>
+          {/*<Text style={styles.infoRecipeName}>{item.title}</Text>*/}
           <View style={styles.infoContainer}>
             {/*<TouchableHighlight*/}
             {/*  onPress={() => navigation.navigate('RecipesList', {*/}
@@ -105,7 +105,7 @@ export const RecipeScreen = ({ route, navigation }) => {
           </View>
         </View>
         <View style={styles.infoRecipeContainer}>
-          <Text style={styles.infoRecipeName}>{item.title}</Text>
+          {/*<Text style={styles.infoRecipeName}>{item.title}</Text>*/}
           <View style={styles.infoContainer}>
             <TouchableHighlight
               onPress={() => navigation.navigate('RecipesList', {

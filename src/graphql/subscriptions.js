@@ -59,8 +59,8 @@ export const onDeleteCategory = /* GraphQL */ `
   }
 `;
 export const onCreateRecipe = /* GraphQL */ `
-  subscription OnCreateRecipe {
-    onCreateRecipe {
+  subscription OnCreateRecipe($owner: String!) {
+    onCreateRecipe(owner: $owner) {
       id
       title
       photo_url
@@ -94,8 +94,8 @@ export const onCreateRecipe = /* GraphQL */ `
   }
 `;
 export const onUpdateRecipe = /* GraphQL */ `
-  subscription OnUpdateRecipe {
-    onUpdateRecipe {
+  subscription OnUpdateRecipe($owner: String!) {
+    onUpdateRecipe(owner: $owner) {
       id
       title
       photo_url
@@ -129,8 +129,8 @@ export const onUpdateRecipe = /* GraphQL */ `
   }
 `;
 export const onDeleteRecipe = /* GraphQL */ `
-  subscription OnDeleteRecipe {
-    onDeleteRecipe {
+  subscription OnDeleteRecipe($owner: String!) {
+    onDeleteRecipe(owner: $owner) {
       id
       title
       photo_url

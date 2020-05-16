@@ -11,13 +11,37 @@ import {
 import styles from './styles'
 import { API, graphqlOperation } from 'aws-amplify'
 import { listCategorys, listRecipes } from '../../graphql/queries'
-import { createCategory, createRecipe } from '../../graphql/mutations'
+import { deleteRecipe } from '../../graphql/mutations'
 import { Icon } from 'react-native-elements'
-import RecipeForm from '../recipe/RecipeForm'
+import RecipeForm from '../../components/recipe/RecipeForm'
+import { onCreateRecipe, onDeleteRecipe, onUpdateRecipe } from '../../graphql/subscriptions'
+import { getNames, useQuery } from 'aws-amplify-react-hooks'
 
 const HomeScreen = ({ route, navigation }) => {
   const [recipes, setRecipes] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
+  const { data, loading, error, fetchMore } = useQuery(
+    {
+      listRecipes,
+      onCreateRecipe,
+      onUpdateRecipe,
+      onDeleteRecipe
+    },
+    {
+      variables: { limit: 5 }
+    },
+    getNames({ listRecipes, onCreateRecipe, onUpdateRecipe, onDeleteRecipe })
+  )
+
+  const _keyExtractor = obj => obj.id.toString()
+
+  if (loading) {
+    return <Text>Loading...</Text>
+  }
+  if (error) {
+    return <Text>Error! {error}</Text>
+  }
+
 
   useEffect(() => {
     fetchRecipes()
@@ -50,12 +74,25 @@ const HomeScreen = ({ route, navigation }) => {
     }
   }
 
+  const removeRecipe = async (item) => {
+    try {
+      console.log(item.id)
+      const id = { id: item.id }
+      console.log(id)
+
+      await API.graphql(graphqlOperation(deleteRecipe, { input: id }))
+    } catch (e) {
+      console.error('error deleting recipe', e)
+    }
+  }
+
   const renderRecipes = ({ item }) => {
     return (
       <TouchableHighlight underlayColor='rgba(73,182,77,0.9)'
-                          onPress={() => navigation.navigate('Recipe', { item })}>
+                          onLongPress={_ => removeRecipe(item)}
+                          onPress={() => navigation.navigate('Recipes', { item })}>
         <View style={styles.container}>
-          <Image style={styles.photo} source={{ uri: item.photo_url }}/>
+          <Image style={styles.photo} source={{ uri: item.photo_url }} />
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.category}>{item.category}</Text>
         </View>
@@ -98,11 +135,14 @@ const HomeScreen = ({ route, navigation }) => {
       </Modal>
       <FlatList
         vertical
+        scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         numColumns={2}
-        data={recipes}
+        data={data}
         renderItem={e => renderRecipes(e)}
-        keyExtractor={item => `${item.id}`}
+        keyExtractor={_keyExtractor}
+        onEndReachedThreshold={0.5}
+        onEndReached={fetchMore}
       />
     </SafeAreaView>
   )
