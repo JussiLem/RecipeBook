@@ -10,7 +10,11 @@ authentication, account recovery & other operations. Authentication uses email &
 ## Techs
 
 * React Native
+* Expo
 * Hooks
+* AWS
+
+### AWS
 * [AWS Amplify React Hooks](https://www.npmjs.com/package/aws-amplify-react-hooks)
 * [GraphQL](https://www.howtographql.com/)
 * [AWS AppSync](https://aws.amazon.com/appsync/)
