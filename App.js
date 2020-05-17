@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { YellowBox } from 'react-native'
 import { Amplify, API, Auth, graphqlOperation } from 'aws-amplify'
-import config from './aws-exports'
-import AppNavigator from './src/AppNavigator'
 import * as SecureStore from 'expo-secure-store'
 import { Alert, StatusBar } from 'react-native-web'
 import { AppLoading } from 'expo'
 import { AmplifyProvider } from 'aws-amplify-react-hooks'
+import AppNavigator from './src/AppNavigator'
+import config from './aws-exports'
 
 YellowBox.ignoreWarnings([
   'Warning: componentWillReceiveProps',
@@ -26,7 +26,6 @@ let dataMemory = {}
 const MEMORY_KEY_PREFIX = 'MyStorage-'
 
 class MyStorage {
-
   static setItem(key, value) {
     SecureStore.setItemAsync(MEMORY_KEY_PREFIX + key, value)
     dataMemory[key] = value
@@ -72,11 +71,7 @@ const App = () => {
     setLoadingComplete(true)
   }
 
-  const handleLoadingError = () => {
-    return (
-      <Alert>error</Alert>
-    )
-  }
+  const handleLoadingError = () => <Alert>error</Alert>
 
   if (!isLoadingComplete) {
     return (
@@ -91,11 +86,10 @@ const App = () => {
   return (
     <>
       <AmplifyProvider client={client}>
-          <StatusBar barStyle="dark-content"/>
-          <AppNavigator/>
+        <StatusBar barStyle='dark-content'/>
+        <AppNavigator/>
       </AmplifyProvider>
     </>
   )
 }
 export default App
-
