@@ -28,8 +28,14 @@ authentication, account recovery & other operations. Authentication uses email &
 
 ### Authentication flow
 
-When the user authenticates the app retrieves credentials from Cognito.
-Appsync connects to the data source (DynamoDB) with AppSync resolvers.
+1. The user registers with email and password.
+2. We'll save the credentials to the local Secure Storage.
+3. The user receives email with verification code send by Cognito.
+    * The verification code can be send again.
+4. The user signs in with the email and password.
+    * The password can be rest if forgotten.
+4. The user authenticates to the app by retrieving credentials from Cognito.
+5. Appsync connects to the data source (DynamoDB) with AppSync resolvers.
 
 ### Architecture
 
