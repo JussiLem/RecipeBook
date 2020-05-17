@@ -25,7 +25,11 @@ const RecipesMain = ({ route, navigation }) => {
 
   const _renderItem = ({ item }) => {
     const check = owner === item.owner
-    return <CardRecipe item={item} onPress={onScreen(check ? 'RecipeAdd' : 'RecipeDetail', navigation, item)} />
+    if (check) {
+      return <CardRecipe item={item} onPress={navigation.navigate('RecipeAdd', { item })}/>
+    } else {
+      return navigation.navigate('RecipeDetail', { item: item })
+    }
   }
 
   const _keyExtractor = obj => obj.id.toString()

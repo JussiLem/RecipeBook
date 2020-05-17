@@ -42,23 +42,26 @@ const styles = StyleSheet.create({
     letterSpacing: 1.17
   }
 })
+// title, description, time, photo_url, owner
 
+const CardRecipeDetail = ({item, navigation})=> {
+  console.log(`card recipe detail: ${JSON.stringify(item)}`)
+  const { title, description, time, photo_url, owner } = item
 
-const CardRecipeDetail = memo(({ item: { title, description, time, photo_url, owner }, onPress }) => {
   const { card, h1, h2, footer, h3, h4 } = styles
-  const userSlice = owner.slice(0, 10)
+  // const userSlice = owner.slice(0, 10)
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback>
       <View style={card}>
         <Text style={h1}>{title}</Text>
         <Text style={h2}>{description}</Text>
         <View style={footer}>
-          <Text style={h3}>{userSlice}</Text>
+          {/*<Text style={h3}>{userSlice}</Text>*/}
           <Text style={h4}>{time}$</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
   )
-})
+}
 
 export { CardRecipeDetail }
