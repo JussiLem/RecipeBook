@@ -12,6 +12,7 @@ authentication, account recovery & other operations. Authentication uses email &
 * React Native
 * [GraphQL](https://www.howtographql.com/)
 * Expo
+    * SecureStorage - provides a way to encrypt and securely store key–value pairs locally on the device.
 * Hooks
 * AWS
 
@@ -25,10 +26,12 @@ authentication, account recovery & other operations. Authentication uses email &
 
 ## General info
 
-### Architecture
+### Authentication flow
 
-When the user authenticates and retrieves credentials from Cognito.
+When the user authenticates the app retrieves credentials from Cognito.
 Appsync connects to the data source (DynamoDB) with AppSync resolvers.
+
+### Architecture
 
 ![Architecture](architecture.png "Architecture of the app")
 
