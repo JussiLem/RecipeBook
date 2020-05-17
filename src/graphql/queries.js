@@ -34,6 +34,7 @@ export const getRecipe = /* GraphQL */ `
       photo_url
       time
       description
+      owner
     }
   }
 `;
@@ -50,6 +51,7 @@ export const listRecipes = /* GraphQL */ `
         photo_url
         time
         description
+        owner
       }
       nextToken
     }

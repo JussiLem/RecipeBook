@@ -29,35 +29,38 @@ export const onDeleteCategory = /* GraphQL */ `
   }
 `;
 export const onCreateRecipe = /* GraphQL */ `
-  subscription OnCreateRecipe {
-    onCreateRecipe {
+  subscription OnCreateRecipe($owner: String!) {
+    onCreateRecipe(owner: $owner) {
       id
       title
       photo_url
       time
       description
+      owner
     }
   }
 `;
 export const onUpdateRecipe = /* GraphQL */ `
-  subscription OnUpdateRecipe {
-    onUpdateRecipe {
+  subscription OnUpdateRecipe($owner: String!) {
+    onUpdateRecipe(owner: $owner) {
       id
       title
       photo_url
       time
       description
+      owner
     }
   }
 `;
 export const onDeleteRecipe = /* GraphQL */ `
-  subscription OnDeleteRecipe {
-    onDeleteRecipe {
+  subscription OnDeleteRecipe($owner: String!) {
+    onDeleteRecipe(owner: $owner) {
       id
       title
       photo_url
       time
       description
+      owner
     }
   }
 `;

@@ -48,6 +48,7 @@ export const createRecipe = /* GraphQL */ `
       photo_url
       time
       description
+      owner
     }
   }
 `;
@@ -62,6 +63,7 @@ export const updateRecipe = /* GraphQL */ `
       photo_url
       time
       description
+      owner
     }
   }
 `;
@@ -76,6 +78,7 @@ export const deleteRecipe = /* GraphQL */ `
       photo_url
       time
       description
+      owner
     }
   }
 `;

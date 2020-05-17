@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native'
+import { StyleSheet, TouchableWithoutFeedback, Text, View, Image } from 'react-native'
 import { BLUE } from '../../constants'
 
 const styles = StyleSheet.create({
@@ -40,24 +40,31 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 18,
     letterSpacing: 1.17
-  }
+  },
+  image: {
+    width: '100%',
+    height: 250
+  },
 })
 // title, description, time, photo_url, owner
 
 const CardRecipeDetail = ({item, navigation})=> {
-  console.log(`card recipe detail: ${JSON.stringify(item)}`)
-  const { title, description, time, photo_url, owner } = item
-
+  console.log('card recipe detail:')
+  console.log(item.params.item)
+  const { title, description, time, photo_url, owner } = item.params.item
+  console.log(owner)
   const { card, h1, h2, footer, h3, h4 } = styles
-  // const userSlice = owner.slice(0, 10)
+  const userSlice = owner.slice(0, 10)
   return (
     <TouchableWithoutFeedback>
       <View style={card}>
         <Text style={h1}>{title}</Text>
         <Text style={h2}>{description}</Text>
+        <Image style={styles.image} source={{ uri: photo_url }}/>
+
         <View style={footer}>
-          {/*<Text style={h3}>{userSlice}</Text>*/}
-          <Text style={h4}>{time}$</Text>
+          <Text style={h3}>{userSlice}</Text>
+          <Text style={h4}>{time} min</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

@@ -8,12 +8,18 @@ type Category
 
 type Recipe
   @model
+  @auth(
+    rules: [
+      {allow: owner, ownerField: "owner", operations: [create, update, delete]},
+    ])
 {
   id: ID!
   title: String!
   photo_url: String!
   time: Int!
   description: String!
+  owner: String
+
 }
 
 type Photo @model {

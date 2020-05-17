@@ -24,11 +24,15 @@ const RecipesMain = ({ route, navigation }) => {
   )
 
   const _renderItem = ({ item }) => {
+    console.log(`owner: ${JSON.stringify(item)}`)
+
     const check = owner === item.owner
-    if (check) {
-      return <CardRecipe item={item} onPress={navigation.navigate('RecipeAdd', { item })}/>
+    if (!check) {
+      console.log('owner: ' + owner)
+      return navigation.navigate('RecipeAdd', { item: item })
     } else {
-      return navigation.navigate('RecipeDetail', { item: item })
+      console.log('no owner')
+      return navigation.navigate('RecipeDetail', { item })
     }
   }
 
