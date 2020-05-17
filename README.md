@@ -12,7 +12,7 @@ authentication, account recovery & other operations. Authentication uses email &
 * React Native
 * [GraphQL](https://www.howtographql.com/)
 * Expo
-    * SecureStorage - provides a way to encrypt and securely store key–value pairs locally on the device.
+    * SecureStore - provides a way to encrypt and securely store key–value pairs locally on the device.
 * Hooks
 * AWS
 
@@ -29,7 +29,7 @@ authentication, account recovery & other operations. Authentication uses email &
 ### Authentication flow
 
 1. The user registers with email and password.
-2. We'll save the credentials to the local Secure Storage.
+2. We'll save the credentials to the local Secure Store.
 3. The user receives email with verification code send by Cognito.
     * The verification code can be send again.
 4. The user signs in with the email and password.
@@ -45,7 +45,7 @@ authentication, account recovery & other operations. Authentication uses email &
 ### Folder structure
 
 The components and screens are separated so they can be more easily recycled in the application.
-The graphql folder contains auto generated files are created by the appsync.
+The graphql folder contains auto generated files that are created by the appsync.
 The original schema that can be edited can be found from:
 ``/amplify/backend/api/recipebook/schema.graphql``
 
