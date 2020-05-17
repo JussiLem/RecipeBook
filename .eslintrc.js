@@ -11,7 +11,9 @@ module.exports = {
     'comma-dangle': 'off',
     'semi': [2, 'never'],
     'arrow-parens': [1, 'as-needed'],
-    'react/jsx-tag-spacing': [0, 'never']
+    'react/jsx-tag-spacing': [0, 'never'],
+    'quotes': ["error", "single"],
+    'jsx-quotes': ["error", "prefer-single"]
 
   },
   'globals': {

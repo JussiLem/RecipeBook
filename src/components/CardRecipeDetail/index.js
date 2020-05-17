@@ -11,12 +11,10 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   h1: {
-    // fontFamily: '3270Narrow',
     color: '#dbdbdb',
     fontSize: 18
   },
   h2: {
-    //fontFamily: '3270Narrow',
     color: '#6a676a',
     marginVertical: 15,
     fontSize: 13,
@@ -29,14 +27,12 @@ const styles = StyleSheet.create({
   },
   h3: {
     color: '#cfcfcf',
-    // fontFamily: '3270Narrow',
     textTransform: 'uppercase',
     fontSize: 18,
     letterSpacing: 0.97
   },
   h4: {
     color: '#cfcfcf',
-    // fontFamily: '3270Narrow',
     textTransform: 'uppercase',
     fontSize: 18,
     letterSpacing: 1.17

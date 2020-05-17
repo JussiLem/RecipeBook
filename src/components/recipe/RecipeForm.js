@@ -43,7 +43,7 @@ export default ({ route, navigation }) => {
       <FormInput
         onChangeText={val => setInput('title', val)}
         value={recipeForm.title}
-        placeholder="Enter title"
+        placeholder='Enter title'
         name='title'
         autoCapitalize='none'
         iconName='md-cloud-outline'
@@ -52,7 +52,7 @@ export default ({ route, navigation }) => {
       <FormInput
         onChangeText={val => setInput('description', val)}
         value={recipeForm.description}
-        placeholder="Enter description"
+        placeholder='Enter description'
         name='description'
         iconName='md-radio'
         iconColor='#2C384A'
@@ -60,7 +60,7 @@ export default ({ route, navigation }) => {
       <FormInput
         onChangeText={val => setInput('photo_url', val)}
         value={recipeForm.photo_url}
-        placeholder="Enter photo Url"
+        placeholder='Enter photo Url'
         name='url'
         iconName='md-thunderstorm'
         iconColor='#2C384A'
@@ -76,7 +76,7 @@ export default ({ route, navigation }) => {
           maximumValue={100}
           value={recipeForm.time}
           onValueChange={slideValue => setInput('time', slideValue)}
-          minimumTrackTintColor="#FFFFFF"
+          minimumTrackTintColor='#FFFFFF"
           maximumTrackTintColor="#d3d3d3"
           thumbTintColor="#b9e4c9"
         />

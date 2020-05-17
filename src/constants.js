@@ -1,5 +1,3 @@
-import { CommonActions } from '@react-navigation/native';
-
 export const BG = '#0B0B0B'
 export const PINK = '#F20AF5'
 export const PURPLE = '#7A1374'
@@ -21,14 +19,3 @@ export const onScreen = (screen, navigation, obj) => () => {
 }
 
 export const goHome = navigation => () => navigation.popToTop()()
-
-let navigator;
-export const setNavigator = nav => {
-  navigator = nav;
-}
-
-export const navigate = (routeName, params) => {
-  if (navigator) {
-    navigator.dispatch(CommonActions.navigate({routeName, params}))
-  }
-}
