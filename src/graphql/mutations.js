@@ -10,16 +10,6 @@ export const createCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -32,16 +22,6 @@ export const updateCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -54,16 +34,6 @@ export const deleteCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -78,30 +48,6 @@ export const createRecipe = /* GraphQL */ `
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -116,30 +62,6 @@ export const updateRecipe = /* GraphQL */ `
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -154,30 +76,6 @@ export const deleteRecipe = /* GraphQL */ `
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -189,24 +87,6 @@ export const createPhoto = /* GraphQL */ `
     createPhoto(input: $input, condition: $condition) {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -218,24 +98,6 @@ export const updatePhoto = /* GraphQL */ `
     updatePhoto(input: $input, condition: $condition) {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -247,24 +109,6 @@ export const deletePhoto = /* GraphQL */ `
     deletePhoto(input: $input, condition: $condition) {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -277,24 +121,6 @@ export const createIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }
@@ -308,24 +134,6 @@ export const updateIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }
@@ -339,24 +147,6 @@ export const deleteIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }

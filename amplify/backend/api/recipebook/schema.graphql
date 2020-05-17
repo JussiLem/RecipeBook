@@ -4,37 +4,26 @@ type Category
   id: ID!
   name: String!
   photo_url: String!
-  recipes: [Recipe] @connection(name: "RecipeCategories")
 }
 
 type Recipe
   @model
-  @auth(
-    rules: [
-      {allow: owner, ownerField: "owner", operations: [create, update, delete]},
-    ])
 {
   id: ID!
   title: String!
   photo_url: String!
   time: Int!
   description: String!
-  category: Category @connection(name: "RecipeCategories")
-  ingredient: [Ingredient] @connection(name: "RecipeIngredients")
-  photos: [Photo] @connection(name: "RecipePhotos")
-
 }
 
 type Photo @model {
   id: ID!
   url: String!
-  photos: Recipe @connection(name: "RecipePhotos")
 }
 
 type Ingredient @model {
   id: ID!
   recipeID: ID!
   photo_url: String!
-  recipe: Recipe @connection(name: "RecipeIngredients")
   name: String!
 }

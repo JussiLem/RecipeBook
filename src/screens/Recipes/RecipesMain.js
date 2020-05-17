@@ -8,7 +8,6 @@ import { AppContainer } from '../../components/AppContainer'
 import { onScreen, BG } from '../../constants'
 import { onCreateRecipe, onUpdateRecipe, onDeleteRecipe } from '../../graphql/subscriptions'
 
-
 const RecipesMain = ({ route, navigation }) => {
   const owner = Auth.user.attributes.sub
   const { data, loading, error, fetchMore } = useQuery(
@@ -26,10 +25,7 @@ const RecipesMain = ({ route, navigation }) => {
 
   const _renderItem = ({ item }) => {
     const check = owner === item.owner
-    console.log(`rendering item: ${JSON.stringify(item)}`)
     return <CardRecipe item={item} onPress={onScreen(check ? 'RecipeAdd' : 'RecipeDetail', navigation, item)} />
-
-    // return <CardRecipe item={item} onPress={onScreen(check ? 'RecipeAdd' : 'RecipeDetail', navigation, item)} />
   }
 
   const _keyExtractor = obj => obj.id.toString()

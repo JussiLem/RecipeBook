@@ -1,11 +1,12 @@
-import React from 'react'
-import { AmplifyProvider } from 'aws-amplify-react-hooks'
-import { StatusBar, YellowBox } from 'react-native'
-import { Amplify, Analytics } from 'aws-amplify'
+import React, { useState } from 'react'
+import { YellowBox } from 'react-native'
+import { Amplify, API, Auth, graphqlOperation } from 'aws-amplify'
 import config from './aws-exports'
-import AppContainer from './src/AppNavigator'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
-import { withAuthenticator } from 'aws-amplify-react-native'
+import AppNavigator from './src/AppNavigator'
+import * as SecureStore from 'expo-secure-store'
+import { Alert, StatusBar } from 'react-native-web'
+import { AppLoading } from 'expo'
+import { AmplifyProvider } from 'aws-amplify-react-hooks'
 
 YellowBox.ignoreWarnings([
   'Warning: componentWillReceiveProps',
@@ -15,22 +16,19 @@ YellowBox.ignoreWarnings([
   'Setting a timer'
 ])
 
-
 const client = {
   Auth,
   API,
   graphqlOperation
 }
-AmplifyProvider(client)
 
-const MEMORY_KEY_PREFIX = '@MyStorage:'
 let dataMemory = {}
-/*
+const MEMORY_KEY_PREFIX = 'MyStorage-'
+
 class MyStorage {
-  static syncPromise = null
 
   static setItem(key, value) {
-    Keychain.setGenericPassword(MEMORY_KEY_PREFIX + key, value)
+    SecureStore.setItemAsync(MEMORY_KEY_PREFIX + key, value)
     dataMemory[key] = value
     return dataMemory[key]
   }
@@ -40,7 +38,7 @@ class MyStorage {
   }
 
   static removeItem(key) {
-    Keychain.resetGenericPassword()
+    SecureStore.deleteItemAsync(MEMORY_KEY_PREFIX + key)
     return delete dataMemory[key]
   }
 
@@ -48,17 +46,56 @@ class MyStorage {
     dataMemory = {}
     return dataMemory
   }
-}*/
+}
 
-Amplify.configure(config)
-Analytics.disable()
+Amplify.configure({
+  ...config,
+  Analytics: {
+    disabled: false
+  },
+  storage: MyStorage
+})
 
-const App = () => (
-  <>
-    <AmplifyProvider client={client}>
-      <StatusBar barStyle="dark-content"/>
-      <AppContainer/>
-    </AmplifyProvider>
-  </>
-)
-export default withAuthenticator(App)
+
+const App = () => {
+  const [isLoadingComplete, setLoadingComplete] = useState(false)
+
+  const loadResourcesAsync = async () => {
+    await Promise.all([
+      Font.loadAsync({
+        // ...
+      }),
+    ])
+  }
+
+  const handleFinishLoading = () => {
+    setLoadingComplete(true)
+  }
+
+  const handleLoadingError = () => {
+    return (
+      <Alert>error</Alert>
+    )
+  }
+
+  if (!isLoadingComplete) {
+    return (
+      <AppLoading
+        startAsync={loadResourcesAsync}
+        onError={handleLoadingError}
+        onFinish={handleFinishLoading}
+      />
+    )
+  }
+
+  return (
+    <>
+      <AmplifyProvider client={client}>
+          <StatusBar barStyle="dark-content"/>
+          <AppNavigator/>
+      </AmplifyProvider>
+    </>
+  )
+}
+export default App
+

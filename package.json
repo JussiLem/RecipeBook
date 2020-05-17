@@ -9,6 +9,7 @@
     "lint": "eslint *.js **/*.js"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
     "@expo/match-media": "^0.0.0-alpha.5",
     "@expo/vector-icons": "^10.1.0",
     "@react-native-community/art": "^1.2.0",
@@ -19,9 +20,12 @@
     "@react-navigation/native": "^5.1.6",
     "@react-navigation/stack": "^5.2.11",
     "@react-navigation/web": "^1.0.0-alpha.9",
+    "apollo-client": "^2.6.10",
     "aws-amplify": "^3.0.9",
     "aws-amplify-react-hooks": "^1.0.13",
     "aws-amplify-react-native": "^4.1.0",
+    "aws-appsync": "^3.0.3",
+    "aws-appsync-react": "^3.0.3",
     "expo": "~37.0.3",
     "expo-secure-store": "~8.1.0",
     "prop-types": "^15.7.2",
@@ -41,6 +45,9 @@
     "react-native-statusbar-alert": "^0.4.0",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
+    "react-navigation": "^4.3.9",
+    "react-navigation-stack": "^2.5.1",
+    "react-navigation-tabs": "^2.8.13",
     "react-responsive": "^8.0.3",
     "tcomb-form-native": "^0.6.20"
   },

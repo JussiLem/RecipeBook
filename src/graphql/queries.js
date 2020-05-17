@@ -7,16 +7,6 @@ export const getCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -31,9 +21,6 @@ export const listCategorys = /* GraphQL */ `
         id
         name
         photo_url
-        recipes {
-          nextToken
-        }
       }
       nextToken
     }
@@ -47,30 +34,6 @@ export const getRecipe = /* GraphQL */ `
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -87,17 +50,6 @@ export const listRecipes = /* GraphQL */ `
         photo_url
         time
         description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
       }
       nextToken
     }
@@ -108,24 +60,6 @@ export const getPhoto = /* GraphQL */ `
     getPhoto(id: $id) {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -139,13 +73,6 @@ export const listPhotos = /* GraphQL */ `
       items {
         id
         url
-        photos {
-          id
-          title
-          photo_url
-          time
-          description
-        }
       }
       nextToken
     }
@@ -157,24 +84,6 @@ export const getIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }
@@ -190,13 +99,6 @@ export const listIngredients = /* GraphQL */ `
         id
         recipeID
         photo_url
-        recipe {
-          id
-          title
-          photo_url
-          time
-          description
-        }
         name
       }
       nextToken

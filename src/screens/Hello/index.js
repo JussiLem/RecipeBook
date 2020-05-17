@@ -17,7 +17,7 @@ const Hello = ({ navigation }) => {
         if (password && email) {
           const user = await Auth.signIn(email, password)
           setLoading(false)
-          user && onScreen('Recipes', navigation)()
+          user && navigation.navigate('Recipes')
         } else {
           setLoading(false)
         }

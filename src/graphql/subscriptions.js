@@ -7,16 +7,6 @@ export const onCreateCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -26,16 +16,6 @@ export const onUpdateCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -45,121 +25,39 @@ export const onDeleteCategory = /* GraphQL */ `
       id
       name
       photo_url
-      recipes {
-        items {
-          id
-          title
-          photo_url
-          time
-          description
-        }
-        nextToken
-      }
     }
   }
 `;
 export const onCreateRecipe = /* GraphQL */ `
-  subscription OnCreateRecipe($owner: String!) {
-    onCreateRecipe(owner: $owner) {
+  subscription OnCreateRecipe {
+    onCreateRecipe {
       id
       title
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
 export const onUpdateRecipe = /* GraphQL */ `
-  subscription OnUpdateRecipe($owner: String!) {
-    onUpdateRecipe(owner: $owner) {
+  subscription OnUpdateRecipe {
+    onUpdateRecipe {
       id
       title
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
 export const onDeleteRecipe = /* GraphQL */ `
-  subscription OnDeleteRecipe($owner: String!) {
-    onDeleteRecipe(owner: $owner) {
+  subscription OnDeleteRecipe {
+    onDeleteRecipe {
       id
       title
       photo_url
       time
       description
-      category {
-        id
-        name
-        photo_url
-        recipes {
-          nextToken
-        }
-      }
-      ingredient {
-        items {
-          id
-          recipeID
-          photo_url
-          name
-        }
-        nextToken
-      }
-      photos {
-        items {
-          id
-          url
-        }
-        nextToken
-      }
     }
   }
 `;
@@ -168,24 +66,6 @@ export const onCreatePhoto = /* GraphQL */ `
     onCreatePhoto {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -194,24 +74,6 @@ export const onUpdatePhoto = /* GraphQL */ `
     onUpdatePhoto {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -220,24 +82,6 @@ export const onDeletePhoto = /* GraphQL */ `
     onDeletePhoto {
       id
       url
-      photos {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -247,24 +91,6 @@ export const onCreateIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }
@@ -275,24 +101,6 @@ export const onUpdateIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }
@@ -303,24 +111,6 @@ export const onDeleteIngredient = /* GraphQL */ `
       id
       recipeID
       photo_url
-      recipe {
-        id
-        title
-        photo_url
-        time
-        description
-        category {
-          id
-          name
-          photo_url
-        }
-        ingredient {
-          nextToken
-        }
-        photos {
-          nextToken
-        }
-      }
       name
     }
   }

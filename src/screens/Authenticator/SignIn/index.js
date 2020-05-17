@@ -9,7 +9,6 @@ import * as SecureStore from 'expo-secure-store';
 
 const Form = t.form.Form
 
-
 export const SignIn = ({ route, navigation }) => {
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -28,9 +27,11 @@ export const SignIn = ({ route, navigation }) => {
       try {
         const { email, password } = userInfo
         const user = await Auth.signIn(email, password)
-        await SecureStore.setItemAsync('email', email)
-        await SecureStore.setItemAsync('password', password)
-        user && onScreen('Recipes', navigation)()
+        await Promise.all([
+          SecureStore.setItemAsync('email', email),
+          SecureStore.setItemAsync('password', password)
+        ])
+        user && navigation.navigate('Recipes')
         setLoading(false)
       } catch (err) {
         setLoading(false)

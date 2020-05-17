@@ -7,16 +7,22 @@ import { RecipeDetail } from './RecipeDetail'
 const Stack = createStackNavigator()
 
 const Recipes = () => {
-    return (
-      <Stack.Navigator headerMode={'none'}>
-        <Stack.Screen name="RecipesMain" component={RecipesMain}/>
-        <Stack.Screen name="RecipeAdd" component={RecipeAdd}/>
-        <Stack.Screen name="RecipeDetail" component={RecipeDetail}/>
-      </Stack.Navigator>
-    )
+  return (
+    <Stack.Navigator headerMode={'none'}>
+      <Stack.Screen name="RecipesMain" component={RecipesMain}/>
+      <Stack.Screen name="RecipeAdd" component={RecipeAdd}/>
+      <Stack.Screen name="RecipeDetail" component={RecipeDetail}/>
+    {/*  <Stack.Screen name="TabNavigator" component={TabNavigator} options={{
+        title: '',
+        headerTransparent: true
+      }}
+      />*/}
+    </Stack.Navigator>
+  )
 }
+/*
 
-Recipes.navigationOptions =  ({ navigation }) => {
+Recipes.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true
 
   if (navigation.state.index > 0) {
@@ -27,5 +33,6 @@ Recipes.navigationOptions =  ({ navigation }) => {
     tabBarVisible
   }
 }
+*/
 
 export { Recipes }

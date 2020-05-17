@@ -5,7 +5,7 @@ import { Button } from '../../components'
 import { AppContainer } from '../../components/AppContainer'
 import { goHome } from '../../constants'
 
-const User = ({ navigation }) => {
+const User = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
